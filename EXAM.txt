@@ -1,0 +1,95 @@
+PART A
+
+    CREATING THE DATABASE AND THE TABLE
+
+    - create database exams;
+    -use exams;
+    - create table Client_master (ClientNo varchar(255) PRIMARY KEY, Name varchar(255), Address varchar(255),City varchar(255), State varchar(255),bal_due int(11));
+
+    Q 1. insert into Client_master values ('001','client 1','address 1','city 1', 'state 1', 3000),('002','client 2','address 2','city 2', 'state 2', 2000),('003','client 3','address 3','city 3', 'state 3', 3500),('004','client 4','address 4','city 4', 'state 4', 6000),('005','client 5','address 5','city 5', 'state 5', 5000);
+
+    Q 2. select names from Client_master where bal_due > 5000;
+
+    Q 4. alter table client_master rename to Client12;
+
+    Q 5.  select bal_due as BALANCE from client12;
+
+PART B
+    Q 6. 
+        CREATING TABLES 
+
+        - CREATE TABLE departments (id VARCHAR(255) NOT NULL , name VARCHAR(255) NOT NULL , PRIMARY KEY (id))
+        - CREATE TABLE employees (id VARCHAR(255) NOT NULL , name VARCHAR(255) NOT NULL , department varchar(255) NOT NULL ,salary int(11) NOT NULL , PRIMARY KEY (id), FOREIGN KEY (department) REFERENCES departments(id));	
+
+        A)
+            - INSERT INTO departments (id, name) VALUES ('001', 'HR'), ('002', 'finance'), ('003', 'marketing'), ('004', 'research & development'), ('005', 'reception');
+            - INSERT INTO employees (id, name, department,salary) VALUES ('001', 'employee 01', '003',1000), ('002', 'employee 2', '001',4000), ('003', 'employee 3', '005',2000), ('004', 'employee 4', '005',2000), ('005', 'employee 005', '001',4000);
+    
+        B) - desc employees;
+
+        C) -SELECT employees.name, departments.name as department FROM employees LEFT OUTER JOIN departments ON employees.department = departments.id;
+
+        D) -SELECT employees.name, departments.name as department FROM employees RIGHT OUTER JOIN departments ON employees.department = departments.id;
+
+        E)-SELECT employees.name, departments.name,employees.salary as department FROM employees INNER JOIN departments ON employees.department = departments.id WHERE employees.salary > (SELECT AVG(employees.salary) FROM employees);
+    
+    Q 7 ---------------------------------------------------------------------------------------------
+
+        #creating table STUDENT 
+            -CREATE TABLE student (studentid VARCHAR(255) NOT NULL , fullnames VARCHAR(255) NOT NULL , gender VARCHAR(255) NOT NULL , age INT(11) NOT NULL , department VARCHAR(255) NOT NULL , PRIMARY KEY (studentid));
+
+        1)- CREATE VIEW student_list AS SELECT * FROM STUDENT;
+
+        2)- CREATE VIEW girls_list AS SELECT *  FROM STUDENT WHERE gender = 'Female';
+
+        3)- CREATE VIEW boys_list AS SELECT *  FROM STUDENT WHERE gender = 'Male';
+
+        4)- INSERT INTO student (studentid, fullnames, gender, age, department)  VALUES  ('S1', 'Aliane', 'Female', 24, 'IT'), ('S2', 'Jean', 'Male', 32, 'Civil Engineering'), ('S3', 'David', 'Female', 17, 'Mechanical Engineering'), ('S4', 'Eric', 'Male', 13, 'Civil Engineering');
+        5)- DELETE FROM STUDENT WHERE age < 20;
+
+
+PART C
+
+
+    Q 9.
+
+        table employee
+            ->create table EMPLOYEES (Employee_Id varchar(255) PRIMARY KEY , First_Name varchar(255) NOT NULL, Last_Name varchar(255) NOT NULL, Email varchar(255) NOT NULL, Phone_Number varchar(255) NOT NULL, Hire_Date DATE, Job_Id varchar(255), Salary int (11), Commission_Pct varchar(255) NOT NULL, Manager_Id varchar(255) NOT NULL, Department_Id varchar(255) NOT NULL)
+
+        A)- SELECT Employee_Id, First_Name, Last_Name, Salary FROM EMPLOYEES;	
+        B)- SELECT Employee_Id, First_Name, Last_Name  FROM EMPLOYEES  WHERE Manager_Id = '100';
+        C)- SELECT First_Name, Last_Name  FROM EMPLOYEES  WHERE Salary >= 4800;
+        D)- SELECT Employee_Id, First_Name, Last_Name FROM EMPLOYEES WHERE Last_Name = 'AUSTIN' OR First_Name = 'AUSTIN';
+        E)- SELECT First_Name, Last_Name  FROM EMPLOYEES  WHERE Department_Id IN (60, 70, 80);
+
+
+    Q 10. 
+
+        # creating table sales
+            -> CREATE TABLE Sales ( Sales_No INT PRIMARY KEY, Salesname VARCHAR(50), Branch VARCHAR(50), Salesamount float, DOB DATE);
+
+        
+        A)-INSERT INTO Sales (Sales_No, Salesname, Branch, Salesamount, DOB) VALUES (1, 'betty', 'Kigali', 45000.50, '1997-12-15'),(2, 'Kevin', 'Muhanga', 72500.00, '1975-09-28'),(3, 'allan', 'Gisenyi', 16000.05, '1995-07-19'),(4, 'Divine', 'Rwamagana', 70000, '2002-12-31'),(5, 'Sifa', 'butare', 15700, '2001-05-12');
+        B)-SELECT Branch, SUM(Salesamount) AS Total_Sales FROM Sales GROUP BY Branch;
+        C)-ELECT Branch, AVG(Salesamount) AS Average_Sales FROM Sales GROUP BY Branch;
+        D)-SELECT Salesname, DATE_FORMAT(DOB, '%d-%b-%y') AS DOB FROM Sales WHERE MONTH(DOB) = 12;
+        E)-SELECT Salesname, DATE_FORMAT(DOB, '%b') AS Month, DATE_FORMAT(DOB, '%d-%b-%y') AS DOB FROM Sales ORDER BY MONTH(DOB);
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+s
